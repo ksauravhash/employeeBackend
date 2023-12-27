@@ -10,10 +10,10 @@ Employee
 
 Task
 
- - Add employee and return id on success.
- - Get all employees
- - Delete employee by ID
- - Update Employee by ID
+ - Add employee and return id on success. - Done
+ - Get all employees - Done
+ - Delete employee by ID - Done
+ - Update Employee by ID - Done
  
 
  - Get nth Level Manager of an Employee
