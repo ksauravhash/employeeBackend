@@ -54,4 +54,18 @@ public class EmployeeService {
 
         employeeRepository.save(emp);
     }
+
+    public Employee getNthLevelManager(GetNManager g) {
+        int level = 0;
+        System.out.println(g);
+        Employee emp = employeeRepository.findById(g.getId());
+        System.out.println(emp);
+        while (level < g.getN()) {
+            if (emp == null)
+                break;
+            emp = emp.getReportsTo();
+            level++;
+        }
+        return emp;
+    }
 }

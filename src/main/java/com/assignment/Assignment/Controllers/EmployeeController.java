@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -72,12 +73,25 @@ public class EmployeeController {
         }
     }
 
-    @PostMapping(path = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addEmployee(@RequestBody @Valid UpdateEmployee employee) {
         try {
-            String ob = employeeService.updateEmployee(employee);
-            GetEmployeeId g = new GetEmployeeId(ob);
-            return new ResponseEntity<GetEmployeeId>(g, HttpStatus.CREATED);
+            employeeService.updateEmployee(employee);
+            return ResponseEntity.ok("{\"success\": true}");
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occured!");
+
+        }
+    }
+
+    @GetMapping("nthMgr")
+    public ResponseEntity<?> getNthLevelManager(@RequestBody @Valid GetNManager g) {
+        try {
+            Employee em = employeeService.getNthLevelManager(g);
+            if (em == null)
+                return ResponseEntity.badRequest().body("Invalid n value");
+            return new ResponseEntity<Employee>(em, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occured!");
