@@ -1,0 +1,29 @@
+Employee
+
+  String EmployeeName
+  Integer PhoneNumber
+  String Email
+  ObjectId ReportsTo (reference to the employee ID of the manager)
+  String ProfileImage (URL for the profile image)
+  
+
+
+Task
+
+ - Add employee and return id on success.
+ - Get all employees
+ - Delete employee by ID
+ - Update Employee by ID
+ 
+
+ - Get nth Level Manager of an Employee
+ - Get ALL Employees with pagination ( Sends the employee with page number and also allow for sorting base on e.g. name or email)
+
+
+  - Send email to it's level 1 Manager on New Employee Addition. It shoul say that the "<EmployeeName>" is working under him. Mobile number is <PhoneNumber> and email is <EmailId> (mailto).  
+ - Host the application on any platform like Heroku, AWS Free Tier, etc.
+
+
+ - Validation and error hanlding is required. 
+
+
