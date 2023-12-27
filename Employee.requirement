@@ -16,11 +16,11 @@ Task
  - Update Employee by ID - Done
  
 
- - Get nth Level Manager of an Employee
- - Get ALL Employees with pagination ( Sends the employee with page number and also allow for sorting base on e.g. name or email)
+ - Get nth Level Manager of an Employee - Done
+ - Get ALL Employees with pagination ( Sends the employee with page number and also allow for sorting base on e.g. name or email) - Done
 
 
-  - Send email to it's level 1 Manager on New Employee Addition. It shoul say that the "<EmployeeName>" is working under him. Mobile number is <PhoneNumber> and email is <EmailId> (mailto).  
+ - Send email to it's level 1 Manager on New Employee Addition. It shoul say that the "<EmployeeName>" is working under him. Mobile number is <PhoneNumber> and email is <EmailId> (mailto).  
  - Host the application on any platform like Heroku, AWS Free Tier, etc.
 
 

@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -41,6 +39,20 @@ public class EmployeeController {
 
         try {
             return new ResponseEntity<List<Employee>>(employeeService.getAllEmployees(),
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occured!");
+        }
+
+    }
+
+    @GetMapping(path = "/pagination", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllEmployeesWithPagination(
+            @RequestBody @Valid GetEmployeesWithPaginationAndSorting ge) {
+        try {
+            return new ResponseEntity<Iterable<Employee>>(
+                    employeeService.getEmployeesWithPagnationAndSorting(ge).getContent(),
                     HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e);
